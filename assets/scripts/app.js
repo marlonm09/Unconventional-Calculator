@@ -1,10 +1,46 @@
-const initialResult = 0;
-let currentResult = initialResult;
+const defaultresult = 0;
+let currentResult = defaultresult;
 
-function add(num1, num2) {
-    currentResult = currentResult + userInput.value;
-    outputResult (currentResult, '');
+// Gets input from input field
+function getUserInput() {
+  return parseInt(userInput.value);
 }
 
-addBtn.addEventListener('click', add);
+// Generates and writes calculation log
+function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
+  const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
+  outputResult(currentResult, calcDescription); // from vendor.js
+}
 
+function add() {
+  const enteredNumber = getUserInput();
+  const initialResult = currentResult;
+  currentResult += enteredNumber;
+  createAndWriteOutput("+", initialResult, enteredNumber);
+}
+
+function subtract() {
+  const enteredNumber = getUserInput();
+  const initialResult = currentResult;
+  currentResult -= enteredNumber;
+  createAndWriteOutput("-", initialResult, enteredNumber);
+}
+
+function multiply() {
+  const enteredNumber = getUserInput();
+  const initialResult = currentResult;
+  currentResult *= enteredNumber;
+  createAndWriteOutput("*", initialResult, enteredNumber);
+}
+
+function divide() {
+  const enteredNumber = getUserInput();
+  const initialResult = currentResult;
+  currentResult /= enteredNumber;
+  createAndWriteOutput("/", initialResult, enteredNumber);
+}
+
+addBtn.addEventListener("click", add);
+subtractBtn.addEventListener("click", subtract);
+multiplyBtn.addEventListener("click", multiply);
+divideBtn.addEventListener("click", divide);
